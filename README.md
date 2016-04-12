@@ -1,10 +1,10 @@
-An R Package of datasets to help predict the creation of Artificial General Intelligence.
+An R Package of datasets to help predict the timeline preceding an Intelligence Explosion.
 
 Installation
 ------------
 
 ``` r
-devtools::install_github("aaboyles/AIPredict")
+install.packages("https://github.com/AABoyles/AIPredict/archive/master.tar.gz", type = "source")
 ```
 
 Data
@@ -16,12 +16,12 @@ This package contains the following datasets:
 -   `ai_koomeys_law` - contains observations contributing to estimates of Koomey's law. Derived from the dataset constructed by Jonathan Koomey, which is aarchived in the `data-raw/` directory.
 -   `ai_prediction` - contains public estimates of Artificial Intelligence milestones. Derived from the dataset produced by [AI Impacts](http://aiimpacts.org/miri-ai-predictions-dataset/), which is archived in the `data-raw/` directory.
 -   `ai_bitcoin_hashrate` - contains the instantaneous hashrate of the bitcoin network measured daily at 6:15:05pm UTC.
--   `ai_fli_winners` - contains the published data of the winners of the Future of Life Institute's 2015 RFP for grants on research for safe artificial intelligence.
 -   `ai_animal_neurons` - contains the merged tables in the Wikipedia Article, [List of Animals by Number of Neurons](https://en.wikipedia.org/w/index.php?title=List_of_animals_by_number_of_neurons&oldid=710786267)
+-   `ai_fli_winners` - contains the published data of the winners of the Future of Life Institute's 2015 RFP for grants on research for safe artificial intelligence.
 
 ### Moore's Law
 
-Roughly stated, Moore's law predicts that the density of transistors in a single processor core grows exponentially. (Moore and Fellow 1998) It is a widely used and cited metric in predictions about the development of Artificial General Intelligence.
+Roughly stated, Moore's law predicts that the density of transistors in a single processor core grows exponentially. (Moore and Fellow 1998) It is a widely used and cited metric in predictions about the development of Artificial General Intelligence. Perhaps the best-known of these is futurist Ray Kurzweil's projections in The Age of Spiritual Machines and The Singularity is Near, which are based on simple of extrapolations of Moore's law.
 
 ``` r
 library(AIPredict)
@@ -35,11 +35,11 @@ ai_moores_law %>%
   stat_smooth(method="lm")
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-1.png)<!-- -->
+![](README_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
 ### Koomey's Law
 
-Koomey's law states that the electricty required to execute some number of computations declines exponentially over time (Koomey et al. 2011). Every decade, the energy cost of computing falls approximately two orders of magnitude.
+Koomey's law states that the electricty required to execute some number of computations declines exponentially over time (Koomey et al. 2011). While less well-known than Moore's law, it offers another critical benchmark for comparison to the human brain.
 
 ``` r
 ai_koomeys_law %>%
@@ -49,13 +49,32 @@ ai_koomeys_law %>%
   stat_smooth(method="lm")
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)<!-- -->
+![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
-While less well-known than Moore's law, it offers another critical benchmark for comparison to the human brain.
+Every decade, the energy cost of computing falls approximately two orders of magnitude.
+
+### Top 500 Supercomputers
+
+The Top 500 Supercomputers. Another good source for demonstrating Moore's and Koomey's laws.
+
+``` r
+ai_top500 %>%
+  filter(Rank == 1) %>%
+  mutate(RMAX=ifelse(is.na(RMax), Rmax, RMax)) %>%
+  filter(!is.na(RMAX)) %>%
+  ggplot(aes(Year, RMAX)) +
+  geom_jitter(width = 1, height = 0, alpha=.3, size=5) +
+  scale_y_log10() +
+  stat_smooth(method = "lm")
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-5-1.png)
+
+While generally accessible, these data currently require a good deal of cleaning, which I'll perform and document in due course.
 
 ### Bitcoin Hashrate
 
-The Hashrate of the Bitcoin network provides a useful insight into the growth of financially-motivated expenditure of computing resources. I suspect that this will be a useful point of comparison as the network's exercised capacity approaches levels comparable to the the human brain.
+The Hashrate of the Bitcoin network provides a useful insight into the growth of financially-motivated expenditure of computing resources to compute the solution of a single problem. I suspect that this will be a useful point of comparison as the network's exercised capacity approaches levels comparable to the the human brain.
 
 ``` r
 ai_bitcoin_hashrate %>%
@@ -63,25 +82,43 @@ ai_bitcoin_hashrate %>%
   geom_line()
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-5-1.png)<!-- -->
+![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
 ### Animal Brains
 
-This dataset isn't especially reliable. It was scraped from the [tables of wikipedia](https://en.wikipedia.org/w/index.php?title=List_of_animals_by_number_of_neurons&oldid=710786267).
+As our computational capacity climbs through the ranks of the animal kingdom, there are a variety of metrics which would be useful for comparison. The [Number of Neurons, Cortical Neurons (in mammals), Synapses](https://en.wikipedia.org/wiki/List_of_animals_by_number_of_neurons), [Brain size](https://en.wikipedia.org/wiki/Brain_size), [Brain-to-Body Mass Ratio](https://en.wikipedia.org/wiki/Brain-to-body_mass_ratio), [Encephalization Quotient](https://en.wikipedia.org/wiki/Encephalization_quotient) and [Cranial Capacity](https://en.wikipedia.org/wiki/Brain_size#Cranial_capacity) might all be useful in this line of research. Sadly, I've not yet found any sources (let alone reliable ones) for more than a few species. This dataset was scraped from the [Wikipedia's List of Animals by Number of Neurons](https://en.wikipedia.org/w/index.php?title=List_of_animals_by_number_of_neurons&oldid=710786267).
 
 ``` r
 ai_animal_neurons %>%
   ggplot(aes(Neurons, Synapses)) +
   geom_point() +
   scale_y_log10() +
-  scale_x_log10()
+  scale_x_log10() +
+  stat_smooth(method = "lm")
 ```
+
+    Warning: Removed 47 rows containing non-finite values (stat_smooth).
 
     Warning: Removed 47 rows containing missing values (geom_point).
 
-![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)<!-- -->
+![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
-The logarithmic scale in both dimensions suggests a power-law relationship, but this is derived from a very small, very noisy sample.
+The logarithmic scale in both dimensions suggests a [power-law relationship](https://en.wikipedia.org/wiki/Power_law), but this is derived from a very small, very noisy sample.
+
+### Future of Life Institute Winning Grants
+
+I don't know if there's anything interesting to be inferred from the [Future of Life Institute Grant Recipients](http://futureoflife.org/first-ai-grant-recipients/), but I collected this data when it was first published and this seems as appropriate a venue as any for its dissemination.
+
+``` r
+ai_fli_winners %>%
+  group_by(Institution) %>%
+  summarise(Total = sum(Amount)) %>% 
+  ggplot(aes(Institution, Total)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle=90, hjust = 1))
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 Desired Data
 ------------
