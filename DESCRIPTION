@@ -7,3 +7,4 @@ Maintainer: Tony Boyles<Anthony@Boyles.cc>
 Description: Datasets to help predict the creation of Artificial General Intelligence
 License: GPL-2
 LazyData: TRUE
+Depends: R (>= 3.0.0)
