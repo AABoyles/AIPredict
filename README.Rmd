@@ -5,7 +5,9 @@ date: April 12, 2016
 output:
   md_document:
     variant: markdown_github
-bibliography: bibliography.bib
+bibliography: references.bib
+nocite: | 
+  @Wikipedia_contributors2016-md
 ---
 
 ```{r echo=FALSE}
@@ -37,7 +39,7 @@ This package contains the following datasets:
 
 ### Moore's Law
 
-Roughly stated, Moore's law predicts that the density of transistors in a single processor core grows exponentially. [@Moore1998-ze] It is a widely used and cited metric in predictions about the development of Artificial General Intelligence. Perhaps the best-known of these is futurist Ray Kurzweil's projections in The Age of Spiritual Machines and The Singularity is Near, which are based on simple of extrapolations of Moore's law.
+Roughly stated, Moore's law predicts that the density of transistors in a single processor core grows exponentially. [@Moore1998-ze] It is a widely used and cited metric in predictions about the development of Artificial General Intelligence. Perhaps the best-known of these is futurist Ray Kurzweil's projections in The Singularity is Near [-@Kurzweil2005-mh], which are based on simple, linear extrapolations of Moore's law.
 
 ```{r, message=FALSE}
 library(AIPredict)
@@ -53,7 +55,7 @@ ai_moores_law %>%
 
 ### Koomey's Law
 
-Koomey's law states that the electricty required to execute some number of computations declines exponentially over time [@Koomey2011-fc]. While less well-known than Moore's law, it offers another critical benchmark for comparison to the human brain.
+Koomey's law states that the electricty required to execute some number of computations declines exponentially over time [@Koomey2011-fc]. While less well-known than Moore's law, it offers another critical benchmark for comparison to the human brain, which computes a mind on a metabolic budget of approximately 10 watts.
 
 ```{r, message=FALSE}
 ai_koomeys_law %>%
@@ -120,7 +122,14 @@ ai_fli_winners %>%
   theme(axis.text.x = element_text(angle=90, hjust = 1))
 ```
 
-## Desired Data
+## Data to be added
+
+This is an obviously incomplete project. Besides the sources demonstrated above, I have the following known sources to be prepared use in this package:
+
+* The Graph 500 [@noauthor_undated-kj]
+* Cellular scaling rules for primate brains [@Herculano-Houzel2007-qk]
+
+### Desired Data
 
 This notably misses estimates about the computational capacities of the biological brains. Other types of estimates about the growth of computing power (e.g. global computing power, specs on the most powerful supercomputer at any given time, size of various commercial cloud infrastructure providers, etc.) are also needed. If you know of any reliable sources of these or related to these topics, please [email me](anthony@boyles.cc).
 

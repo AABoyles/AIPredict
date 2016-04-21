@@ -21,7 +21,7 @@ This package contains the following datasets:
 
 ### Moore's Law
 
-Roughly stated, Moore's law predicts that the density of transistors in a single processor core grows exponentially. (Moore and Fellow 1998) It is a widely used and cited metric in predictions about the development of Artificial General Intelligence. Perhaps the best-known of these is futurist Ray Kurzweil's projections in The Age of Spiritual Machines and The Singularity is Near, which are based on simple of extrapolations of Moore's law.
+Roughly stated, Moore's law predicts that the density of transistors in a single processor core grows exponentially. (Moore and Fellow 1998) It is a widely used and cited metric in predictions about the development of Artificial General Intelligence. Perhaps the best-known of these is futurist Ray Kurzweil's projections in The Singularity is Near (2005), which are based on simple, linear extrapolations of Moore's law.
 
 ``` r
 library(AIPredict)
@@ -35,11 +35,11 @@ ai_moores_law %>%
   stat_smooth(method="lm")
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-3-1.png)<!-- -->
 
 ### Koomey's Law
 
-Koomey's law states that the electricty required to execute some number of computations declines exponentially over time (Koomey et al. 2011). While less well-known than Moore's law, it offers another critical benchmark for comparison to the human brain.
+Koomey's law states that the electricty required to execute some number of computations declines exponentially over time (Koomey et al. 2011). While less well-known than Moore's law, it offers another critical benchmark for comparison to the human brain, which computes a mind on a metabolic budget of approximately 10 watts.
 
 ``` r
 ai_koomeys_law %>%
@@ -49,7 +49,7 @@ ai_koomeys_law %>%
   stat_smooth(method="lm")
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)<!-- -->
 
 Every decade, the energy cost of computing falls approximately two orders of magnitude.
 
@@ -68,7 +68,7 @@ ai_top500 %>%
   stat_smooth(method = "lm")
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-5-1.png)<!-- -->
 
 While generally accessible, these data currently require a good deal of cleaning, which I'll perform and document in due course.
 
@@ -82,7 +82,7 @@ ai_bitcoin_hashrate %>%
   geom_line()
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)<!-- -->
 
 ### Animal Brains
 
@@ -101,7 +101,7 @@ ai_animal_neurons %>%
 
     Warning: Removed 47 rows containing missing values (geom_point).
 
-![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)<!-- -->
 
 The logarithmic scale in both dimensions suggests a [power-law relationship](https://en.wikipedia.org/wiki/Power_law), but this is derived from a very small, very noisy sample.
 
@@ -118,16 +118,31 @@ ai_fli_winners %>%
   theme(axis.text.x = element_text(angle=90, hjust = 1))
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-8-1.png)<!-- -->
 
-Desired Data
-------------
+Data to be added
+----------------
+
+This is an obviously incomplete project. Besides the sources demonstrated above, I have the following known sources to be prepared use in this package:
+
+-   The Graph 500 (“Brief Introduction,” n.d.)
+-   Cellular scaling rules for primate brains (Herculano-Houzel et al. 2007)
+
+### Desired Data
 
 This notably misses estimates about the computational capacities of the biological brains. Other types of estimates about the growth of computing power (e.g. global computing power, specs on the most powerful supercomputer at any given time, size of various commercial cloud infrastructure providers, etc.) are also needed. If you know of any reliable sources of these or related to these topics, please [email me](anthony@boyles.cc).
 
 References
 ----------
 
+“Brief Introduction.” n.d. <http://www.graph500.org/>. <http://www.graph500.org/>.
+
+Herculano-Houzel, Suzana, Christine E Collins, Peiyan Wong, and Jon H Kaas. 2007. “Cellular Scaling Rules for Primate Brains, Table 2.” <http://www.pnas.org/content/104/9/3562/suppl/DC1>.
+
 Koomey, J G, S Berard, M Sanchez, and H Wong. 2011. “Implications of Historical Trends in the Electrical Efficiency of Computing.” *IEEE Annals of the History of Computing* 33 (3): 46–54. doi:[10.1109/MAHC.2010.28](https://doi.org/10.1109/MAHC.2010.28).
 
+Kurzweil, Ray. 2005. *The Singularity Is Near: When Humans Transcend Biology*. Penguin. <https://books.google.com/books?hl=en&lr=&id=9FtnppNpsT4C&oi=fnd&pg=PT22&dq=The%2BSingularity%2Bis%2BNear&ots=K29jXGYYAz&sig=wWisXrrCfssdSBBEGDMAsjgPrBk>.
+
 Moore, Gordon E, and Life Fellow. 1998. “Cramming More Components onto Integrated Circuits.” *Proceedings of the IEEE* 86 (1). <http://www.cs.utexas.edu/~fussell/courses/cs352h/papers/moore.pdf>.
+
+Wikipedia contributors. 2016. “List of Animals by Number of Neurons.” <https://en.wikipedia.org/w/index.php?title=List_of_animals_by_number_of_neurons&oldid=716197676>. <https://en.wikipedia.org/w/index.php?title=List_of_animals_by_number_of_neurons&oldid=716197676>.
