@@ -8,3 +8,6 @@ Description: Datasets to help predict the creation of Artificial General Intelli
 License: GPL-2
 LazyData: TRUE
 Depends: R (>= 3.0.0)
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr

@@ -86,7 +86,7 @@ ai_bitcoin_hashrate %>%
 
 ### Animal Brains
 
-As our computational capacity climbs through the ranks of the animal kingdom, there are a variety of metrics which would be useful for comparison. The [Number of Neurons, Cortical Neurons (in mammals), Synapses](https://en.wikipedia.org/wiki/List_of_animals_by_number_of_neurons), [Brain size](https://en.wikipedia.org/wiki/Brain_size), [Brain-to-Body Mass Ratio](https://en.wikipedia.org/wiki/Brain-to-body_mass_ratio), [Encephalization Quotient](https://en.wikipedia.org/wiki/Encephalization_quotient) and [Cranial Capacity](https://en.wikipedia.org/wiki/Brain_size#Cranial_capacity) might all be useful in this line of research. Sadly, I've not yet found any sources (let alone reliable ones) for more than a few species. This dataset was scraped from the [Wikipedia's List of Animals by Number of Neurons](https://en.wikipedia.org/w/index.php?title=List_of_animals_by_number_of_neurons&oldid=710786267).
+As our computational capacity climbs through the ranks of the animal kingdom, there are a variety of metrics which would be useful for comparison. The [Number of Neurons, Cortical Neurons (in mammals), Synapses](https://en.wikipedia.org/wiki/List_of_animals_by_number_of_neurons), [Brain size](https://en.wikipedia.org/wiki/Brain_size), [Brain-to-Body Mass Ratio](https://en.wikipedia.org/wiki/Brain-to-body_mass_ratio), [Encephalization Quotient](https://en.wikipedia.org/wiki/Encephalization_quotient) and [Cranial Capacity](https://en.wikipedia.org/wiki/Brain_size#Cranial_capacity) might all be useful in this line of research. Sadly, I've not yet found any sources (let alone reliable ones) for more than a few species. This dataset was scraped from the [Wikipedia's List of Animals by Number of Neurons](https://en.wikipedia.org/w/index.php?title=List_of_animals_by_number_of_neurons&oldid=710786267). Those, in turn, were assembled from a variety of sources, most prominently Herculano-Houzel et al. (2007b). (This last set is on my [list of sources to add](#Data%20to%20be%20added).)
 
 ``` r
 ai_animal_neurons %>%
@@ -107,7 +107,7 @@ The logarithmic scale in both dimensions suggests a [power-law relationship](htt
 
 ### Future of Life Institute Winning Grants
 
-I don't know if there's anything interesting to be inferred from the [Future of Life Institute Grant Recipients](http://futureoflife.org/first-ai-grant-recipients/), but I collected this data when it was first published and this seems as appropriate a venue as any for its dissemination.
+I don't know if there's anything interesting to be inferred from the [Future of Life Institute Grant Recipients](http://futureoflife.org/first-ai-grant-recipients/), but I collected this data when it was first published and this seems as appropriate a venue for its dissemination as any.
 
 ``` r
 ai_fli_winners %>%
@@ -115,7 +115,7 @@ ai_fli_winners %>%
   summarise(Total = sum(Amount)) %>% 
   ggplot(aes(Institution, Total)) +
   geom_bar(stat = "identity") +
-  theme(axis.text.x = element_text(angle=90, hjust = 1))
+  theme(axis.text.x = element_text(angle=90, hjust = 1, vjust = .5))
 ```
 
 ![](README_files/figure-markdown_github/unnamed-chunk-8-1.png)<!-- -->
@@ -126,7 +126,7 @@ Data to be added
 This is an obviously incomplete project. Besides the sources demonstrated above, I have the following known sources to be prepared use in this package:
 
 -   The Graph 500 (“Brief Introduction,” n.d.)
--   Cellular scaling rules for primate brains (Herculano-Houzel et al. 2007)
+-   Cellular scaling rules for primate brains (Herculano-Houzel et al. 2007a)
 
 ### Desired Data
 
@@ -137,7 +137,9 @@ References
 
 “Brief Introduction.” n.d. <http://www.graph500.org/>. <http://www.graph500.org/>.
 
-Herculano-Houzel, Suzana, Christine E Collins, Peiyan Wong, and Jon H Kaas. 2007. “Cellular Scaling Rules for Primate Brains, Table 2.” <http://www.pnas.org/content/104/9/3562/suppl/DC1>.
+Herculano-Houzel, Suzana, Christine E Collins, Peiyan Wong, and Jon H Kaas. 2007a. “Cellular Scaling Rules for Primate Brains, Table 2.” <http://www.pnas.org/content/104/9/3562/suppl/DC1>.
+
+———. 2007b. “Cellular Scaling Rules for Primate Brains.” *Proceedings of the National Academy of Sciences of the United States of America* 104 (9): 3562–7. doi:[10.1073/pnas.0611396104](https://doi.org/10.1073/pnas.0611396104).
 
 Koomey, J G, S Berard, M Sanchez, and H Wong. 2011. “Implications of Historical Trends in the Electrical Efficiency of Computing.” *IEEE Annals of the History of Computing* 33 (3): 46–54. doi:[10.1109/MAHC.2010.28](https://doi.org/10.1109/MAHC.2010.28).
 

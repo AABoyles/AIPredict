@@ -1,0 +1,111 @@
+---
+title: "An Introduction to Predicting the Intelligence Explosion"
+author: "Anthony A. Boyles"
+date: "`r Sys.Date()`"
+bibliography: ../references.bib
+nocite: | 
+  @Wikipedia_contributors2016-md
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r config, echo=FALSE}
+knitr::opts_chunk$set(
+  comment=NA,
+  fig.width=7,
+  fig.height=6
+)
+
+library(dplyr)
+library(ggplot2)
+```
+
+It is a widely used and cited metric in predictions about the development of Artificial General Intelligence. Perhaps the best-known of these is futurist Ray Kurzweil's projections in *The Singularity is Near* [-@Kurzweil2005-mh], which are based on simple, linear extrapolations of Moore's law.
+
+### Moore's Law
+
+Roughly stated, Moore's law predicts that the density of transistors in a single processor core grows exponentially. [@Moore1998-ze] 
+
+```{r, message=FALSE}
+library(AIPredict)
+library(dplyr)
+library(ggplot2)
+
+ai_moores_law %>%
+  ggplot(aes(Year, Transistors)) +
+  geom_point() +
+  scale_y_log10() +
+  stat_smooth(method="lm")
+```
+
+### Koomey's Law
+
+Koomey's law states that the electricty required to execute some number of computations declines exponentially over time [@Koomey2011-fc]. While less well-known than Moore's law, it offers another critical benchmark for comparison to the human brain, which computes a mind on a metabolic budget on the order of approximately 10 watts.
+
+```{r, message=FALSE}
+ai_koomeys_law %>%
+  ggplot(aes(Year, WattsPerMCPS)) +
+  geom_point() +
+  scale_y_log10() +
+  stat_smooth(method="lm")
+```
+
+```{r}
+koomeysLaw <- lm(Year ~ log(WattsPerMCPS), data = ai_koomeys_law)
+summary(koomeysLaw)
+```
+
+While Moore's law is now expected to slow down (owing to Intel's recently [signalled development cycle](http://www.businessinsider.com/intel-acknowledges-slowdown-to-moores-law-2016-3)), Koomey's law may remain more-or-less "on-schedule", implying that energy costs per transistor are falling faster than indicators of Moore's law.
+
+### Top 500 Supercomputers
+
+The Top 500 Supercomputers. Another good source for demonstrating Moore's and Koomey's laws.
+
+```{r}
+ai_top500 %>%
+  filter(Rank == 1) %>%
+  mutate(RMAX=ifelse(is.na(RMax), Rmax, RMax)) %>%
+  filter(!is.na(RMAX)) %>%
+  ggplot(aes(Year, RMAX)) +
+  geom_jitter(width = 1, height = 0, alpha=.3, size=5) +
+  scale_y_log10() +
+  stat_smooth(method = "lm")
+```
+
+### Graph 500: Top 500 Graph-traversing Supercomputers
+
+The Top 500 Graph-traversing Supercomputers.
+
+```{r}
+
+```
+
+### Bitcoin Hashrate
+
+The Hashrate of the Bitcoin network provides a useful insight into the growth of financially-motivated expenditure of computing resources to compute the solution of a single problem. I suspect that this will be a useful point of comparison as the network's exercised capacity approaches levels comparable to the the human brain.
+
+```{r}
+ai_bitcoin_hashrate %>%
+  ggplot(aes(Date, GHPS)) +
+  geom_line()
+```
+
+### Animal Brains
+
+As our computational capacity climbs through the ranks of the animal kingdom, there are a variety of metrics which would be useful for comparison. The [Number of Neurons, Cortical Neurons (in mammals), Synapses](https://en.wikipedia.org/wiki/List_of_animals_by_number_of_neurons), [Brain size](https://en.wikipedia.org/wiki/Brain_size), [Brain-to-Body Mass Ratio](https://en.wikipedia.org/wiki/Brain-to-body_mass_ratio), [Encephalization Quotient](https://en.wikipedia.org/wiki/Encephalization_quotient) and [Cranial Capacity](https://en.wikipedia.org/wiki/Brain_size#Cranial_capacity) might all be useful in this line of research. Sadly, I've not yet found any sources (let alone reliable ones) for more than a few species. This dataset was scraped from the [Wikipedia's List of Animals by Number of Neurons](https://en.wikipedia.org/w/index.php?title=List_of_animals_by_number_of_neurons&oldid=710786267). Those, in turn, were assembled from a variety of sources, most prominently @Herculano-Houzel2007-qt. (This last set is on my [list of sources to add](#Data to be added).)
+
+```{r}
+ai_animal_neurons %>%
+  ggplot(aes(Neurons, Synapses)) +
+  geom_point() +
+  scale_y_log10() +
+  scale_x_log10() +
+  stat_smooth(method = "lm")
+```
+
+The logarithmic scale in both dimensions suggests a [power-law relationship](https://en.wikipedia.org/wiki/Power_law), but this is derived from a very small, very noisy sample.
+
+## References
