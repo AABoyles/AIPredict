@@ -1,0 +1,31 @@
+Rank,MTEPS/W,Site,Machine,G500 rank,Scale,GTEPS,Nodes,Cores
+1,62.93,Kyushu University,GraphCREST-SandybridgeEP-2.4GHz,68,30,31.33,1,32
+2,61.48,Kyushu University,GraphCREST-SandybridgeEP-2.4GHz,,30,28.61,1,32
+3,51.95,Kyushu University,GraphCREST-Huawei,,32,59.90,1,60
+4,48.28,Kyushu University,GraphCREST-Sandybridge-EP-2.7GHz,67,30,31.95,1,32
+5,44.42,Kyushu University,GraphCREST-Sandybridge-EP-2.7GHz,,32,55.74,1,60
+6,44.35,Tokyo Institute of Technology,EBD-RH2288V3,80,32,14.86,1,36
+7,36.86,George Washington University,Colonial0,,30,12.90,1,28
+8,35.87,Tokyo Institute of Technology,GraphCREST-Custom #1,/,32,10.64,1,32
+9,34.57,National Institute of Advanced Industrial Science and Technology (AIST),NEDO-AIRC-NAIROBI-UV,,33,161.21,1,256
+10,28.88,Tokyo Institute of Technology,MEM-CREST Node #2,101,30,7.98,1,16
+11,23.68,SGI,SGI UV 300,/,33,99.79,1,256
+12,22.36,The University of British Columbia,Alkindi26-hybrid,95,30,10.31,1,/
+13,20.81,Kyushu University,GraphCREST-Huawei,71,33,29.29,1,60
+14,20.49,HP Ft. Collins,hawk040os1,46,33,128.34,1,240
+15,17.24,Kyushu University,GraphCREST-Bulldozer,85,31,13.63,1,64
+16,14.92,HPE Ft. Collins,Hawk028os1,,33,141.90,1,288
+17,14.06,Tokyo Institute of Technology,TSUBAME-KFC,50,32,104.31,32,384
+18,12.48,The Institute of Statistical Mathematics,ismuv2k2,45,32,131.43,1,640
+19,10.86,The University of British Columbia,Alkindi26-CPU,117,30,4.25,1,/
+20,8.39,Plexus Engineering,HYPATIA (Data Vortex Technologies DV206),,33,88.11,32,256
+21,5.41,Forschungszentrum Julich (FZJ),JUQUEEN,5,38,5848,16384,262144
+22,5.29,Tokyo Institute of Technology,GraphCREST-7048GR-TR,134,31,1.78,1,36
+23,4.42,Argonne National Laboratory,DOE/SC/ANL Mira,4,40,14328,32768,524288
+24,4.35,Tokyo Institute of Technology,EBD-RH5885v2,123,30,3.67,1,48
+25,3.55,Lawrence Livermore National Laboratory,DOE/NNSA/LLNL Sequoia,2,40,15363,65536,1048576
+26,3.42,Tokyo Institute of Technology,EBD-RH5885v2,126,33,3.11,1,48
+27,2.28,The University of British Columbia,Alkindi2,/,30,1.36,1,/
+28,1.89,Research Center for Advanced Computing Infrastructure,altix,64,30,37.66,1,512
+29,0.73,Mayo Clinic,grace,94,31,10.32,64,64
+30,0.05,Institute of Mathematics and Mechanics UrB RAS,URAN,128,30,2.8,16,1984
